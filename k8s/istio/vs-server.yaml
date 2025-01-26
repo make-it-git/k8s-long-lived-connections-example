@@ -19,12 +19,12 @@ metadata:
   name: server
 spec:
   host: server
-  # Comment out trafficPolicy to use default traffic distribution
-  trafficPolicy:
-    loadBalancer:
-      consistentHash:
-#        useSourceIp: true # traffic distribution based on source pod IP
-        httpHeaderName: x-user # traffic distribution based on header value
+# Comment out trafficPolicy to use default traffic distribution
+#  trafficPolicy:
+#    loadBalancer:
+#      consistentHash:
+#        # useSourceIp: true # traffic distribution based on source pod IP
+#        # httpHeaderName: x-user # traffic distribution based on header value
   subsets:
     - name: v1
       labels:
