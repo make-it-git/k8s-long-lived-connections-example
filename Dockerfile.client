@@ -1,0 +1,11 @@
+FROM golang:1.23 AS builder
+WORKDIR /app
+COPY go.mod ./
+RUN go mod download
+COPY . .
+RUN CGO_ENABLED=0 go build -o client ./cmd/client/main.go
+
+FROM alpine:latest
+WORKDIR /app
+COPY --from=builder /app/client /app/client
+CMD ["/app/client"]
